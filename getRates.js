@@ -1,4 +1,4 @@
-https://docs.google.com/spreadsheets/d/XXXXXXXXXXXXXXXXXXXXX/edit#gid=0
+// https://docs.google.com/spreadsheets/d/XXXXXXXXXXXXXXXXXXXXX/edit#gid=0
 const GID = '1_TTXUFG57FfSFJwhmb_iaEfiy5opGYR8QzWsHaUQaxE';
 const SHEET = SpreadsheetApp.openById(GID);
 // https://ja.wikipedia.org/wiki/ISO_4217
