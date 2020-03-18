@@ -22,13 +22,8 @@ function doGet(e) {
       "currencyFrom": currencyFrom,
       "price": price
     };
-    
-    let response = {
-      data: responseList,
-      meta: { status: 'success' }
-    };
-    
-    return ContentService.createTextOutput(JSON.stringify(response)).setMimeType(ContentService.MimeType.JSON);
+
+    apiResponse(responseList, "success");
   }
 }
 
@@ -49,7 +44,9 @@ function calcRate(currencyTo, currencyFrom, price) {
 
 function validation(currencyTo, currencyFrom, price) {
   // priceのチェック
-  let isPriceValid = isNaN(price) ? true : false;
+  // let isPriceValid = isNaN(price) ? true : false;
+  isNaN(price) ? true : apiResponse("Not Integer", "error");
+
   let sheet = SHEET.getSheetByName("JPY");
   let range = sheet.getRange(1, 1, MAXCURRENCY, 2);
 
@@ -63,6 +60,16 @@ function validation(currencyTo, currencyFrom, price) {
     return arr.includes(true) ? false : true;
   }
 
-  let isCurrencyToValid = currencyCheck(currencyTo);
-  let isCurrencyFromValid = currencyCheck(currencyFrom);
+  // let isCurrencyToValid = currencyCheck(currencyTo);
+  // let isCurrencyFromValid = currencyCheck(currencyFrom);
+  // isPriceValid isCurrencyToValid isCurrencyFromValid 
+}
+
+function apiResponse(response, statusMsg) {
+    let response = {
+      data: response,
+      meta: { status: statusMsg }
+    };
+    
+    return ContentService.createTextOutput(JSON.stringify(response)).setMimeType(ContentService.MimeType.JSON);
 }
