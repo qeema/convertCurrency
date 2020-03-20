@@ -1,6 +1,9 @@
 // https://docs.google.com/spreadsheets/d/XXXXXXXXXXXXXXXXXXXXX/edit#gid=0
 let GID = '1bGCTs4z7F9UjnXt310RfSSrZ739eRp31NTiYW4ATnEo';
 let SHEET = SpreadsheetApp.openById(GID);
+const COUNTRIES = [
+  'CAD','HKD','ISK','PHP','DKK','HUF','CZK','GBP','RON','SEK','IDR','INR','BRL','RUB','HRK','JPY','THB','CHF','EUR','MYR','BGN','TRY','CNY','NOK','NZD','ZAR','USD','MXN','SGD','AUD','ILS','KRW','PLN'
+];
 
 function myFunction() {
   // COUNTRIESに国一覧を定義
