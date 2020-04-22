@@ -1,24 +1,51 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: タイトル
+  title: convert currency
+  description: 通貨変換を行うだけのシンプルなgas apiです。api.exchangeratesapi.ioから毎日取得した値を元に通貨変換を行います。
+schemes:
+  - https
+host: "script.google.com"
+basePath: "/macros/s/AKfycbygcJDLcIs7ljLR-M9WxsLvqqlY4LFSUPLiisSE8YYY6880_VU"
 paths:
-  '/user/{id}':
+  '/exec':
     get:
-      description: ユーザー情報取得
+      description: Convert currency
       parameters:
-      - name: id
+      - name: to
         in: path
-        description: user id
+        description: ISO 4217
         required: true
         type: number
+      - name: from
+        in: path
+        description: ISO 4217
+        required: true
+        type: number
+      - name: price
+        in: path
+        description: price before converted
+        required: true
+        type: integer
       responses:
         '200':
-          description: 成功
+          description: success
           schema:
             type: object
             properties:
-              id:
-                type: integer
-              username:
-                type: string
+              data:
+                $ref: "#/definitions/data" 
+              message:
+                type: "string"
+                example: success
+definitions:
+  data: 
+    type: "object"
+    properties:
+      price:
+        type: "number"
+        format: "double"
+        example: 100.17853048
+      currency:
+        type: "string"
+        example: "JPY"
